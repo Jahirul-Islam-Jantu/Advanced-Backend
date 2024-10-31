@@ -15,6 +15,18 @@ app.get("/api/get-fibonacci", (req, res)=>{ // we created an api with function o
     }
 })
 
+app.get("/api/toCapitalize", (req, res)=>{
+    try {
+        const value = req.query.value
+        res.json({
+            actualValue:value,
+            result: toCapitalize(value)
+        })
+    } catch {
+        res.status(422).json({message: "Invalid Value" , value: req.query.value})
+    }
+})
+
 
 
 
@@ -26,12 +38,28 @@ app.get("/api/get-fibonacci", (req, res)=>{ // we created an api with function o
 app.listen(5050,()=>{  // this is the listening port of our server
     console.log("Server is listening on Port 5050")
 })
-
-const fibonacci = (num) => { // this is the backend function of our server
-    if(num < 2){
-        return num;
-    } else {
-        return (fibonacci(num - 1) + fibonacci(num - 2));
+//
+// const fibonacci = (num) => { // this is the backend function of our server
+//     if(num < 2){
+//         return num;
+//     } else {
+//         return (fibonacci(num - 1) + fibonacci(num - 2));
+//     }
+// }
+function fibonacci(n){
+    if (n < 0) return undefined;
+    if (n === 0) return 0;
+    let previous = 1;
+    let sum = 1;
+    for (let i = 3; i <= n; i++){
+        let temp = sum;
+        sum += previous;
+        previous = temp;
     }
+    return sum
 }
-console.log(fibonacci(5))
+
+function toCapitalize(name) {
+    return name.toUpperCase();
+
+}

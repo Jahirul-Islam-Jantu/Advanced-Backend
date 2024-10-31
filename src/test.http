@@ -1,1 +1,4 @@
-GET localhost:5050/api/get-fibonacci?name=fibonacci&value=20
+GET localhost:5050/api/toCapitalize?name=toCapitalize&value=jahirulislam
+
+#GET localhost:5050/api/get-fibonacci?name=fibonacci&value=30
+
