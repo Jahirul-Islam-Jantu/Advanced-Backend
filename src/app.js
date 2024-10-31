@@ -11,7 +11,7 @@ app.get("/api/get-fibonacci", (req, res)=>{ // we created an api with function o
             result:fibonacci(value)
         })
     }catch{
-        res.status(422).json({message: "Invalid Value"})
+        res.status(422).json({message: "Invalid Value" , value: req.query.value})
     }
 })
 
