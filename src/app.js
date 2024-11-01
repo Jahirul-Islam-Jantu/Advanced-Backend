@@ -27,6 +27,18 @@ app.get("/api/toCapitalize", (req, res)=>{
     }
 })
 
+app.get("/api/factorialNumber", (req, res)=>{
+    try{
+        const value = req.query.value
+        res.json({
+            actualValue:value,
+            result:factorialNumber(value)
+        })
+    }catch {
+        res.status(422).json({message: "Invalid Value" , value: req.query.value})
+    }
+})
+
 
 
 
@@ -62,4 +74,10 @@ function fibonacci(n){
 function toCapitalize(name) {
     return name.toUpperCase();
 
+}
+function factorialNumber(n){
+    if (n <= 1) {
+        return 1
+    }
+    return n * factorialNumber(n - 1);
 }
